@@ -1,0 +1,58 @@
+{% load static %}
+
+{{ direct_name|json_script:'direct-name' }}
+{{ username_|json_script:'username' }}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ user_1.username }} & {{ user_2.username }}</title>
+</head>
+<body>
+<section>
+  <header>
+    <div>
+        Приватный чат c пользователем:
+        {% if username_ == user_1.username %}
+        {{ user_2.username }}
+        {% else %}
+        {{ user_1.username }}
+        {% endif %}
+    </div>
+  </header>
+    {% if messages %}
+      <ul >
+        {% for message in messages %}
+            <li>{{message}}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  <main id="msger-chatarea">
+      {% for message in chat_messages %}
+          {% if message.author.username == username_ %}
+              <div id = "{{ message.count_in_room }}">
+                      <div>{{ message.author }}:</div>
+                      <div>{{ message.time }}</div>
+                  <div>{{ message.text }}</div>
+              </div>
+          {% else %}
+              <div id = "{{ message.count_in_room }}">
+                        <div>
+                          <div>{{ message.author }}:</div>
+                          <div>{{ message.time }}</div>
+                        </div>
+                        <div>{{ message.text }}</div>
+                </div>
+          {% endif %}
+      {% endfor %}
+  </main>
+<form>
+    <input type="text" id="input" placeholder="Сообщение">
+    <input type="button" id="submit" value="Отправить">
+</form>
+</section>
+<h1 id="titleMessenger">messenger</h1>
+    <script src="{% static 'js/direct.js'%}"></script>
+</body>
+</html>

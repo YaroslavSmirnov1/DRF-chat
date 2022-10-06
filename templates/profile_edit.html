@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование профиля</title>
+</head>
+<body>
+{% if messages %}
+      <ul>
+        {% for message in messages %}
+            <li>{{message}}</li>
+        {% endfor %}
+      </ul>
+{% endif %}
+<h1>messenger</h1>
+<form>
+    <p id="backButton">&#8592</p>
+    <h2>Редактирование Профиля</h2>
+    <h2 id="profileName"></h2>
+    <img src="" alt="Аватар" class="user-pic" id="profileAvatar"/>
+  <div>
+    <input type="text" placeholder="" name="usrnm" id="profileInputUsername">
+  </div>
+
+  <div>
+    <input type="text" placeholder="" name="email" id="profileInputEmail">
+  </div>
+
+  <div>
+    <div id="passwordChangeButton">Сменить пароль</div>
+  </div>
+
+  <div>
+    <input type="file" name="avatar" accept="image/png, image/jpeg" id="profileInputAvatar">
+  </div>
+  <button type="button" class="btn" id="submitButton">Обновить данные</button>
+</form>
+<script src="../static/js/profile_edit.js"></script>
+</body>
+</html>

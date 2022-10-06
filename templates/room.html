@@ -1,0 +1,59 @@
+{% load static %}
+
+{{ room_name|json_script:'room-name' }}
+{{ username_|json_script:'username' }}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Public chat: {{ room_name }}</title>
+</head>
+<body>
+<section>
+  <header>
+    <div>
+      {{ room_name }}
+    </div>
+  </header>
+    {% if messages %}
+      <ul>
+        {% for message in messages %}
+            <li>{{message}}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  <main id="msger-chatarea">
+      {% for message in chat_messages %}
+          {% if message.author.username == username_ %}
+              <div id = "{{ message.count_in_room }}">
+                    <div>
+                        <div>
+                          <div>{{ message.author }}:</div>
+                          <div>{{ message.time }}</div>
+                        </div>
+                        <div>{{ message.text }}</div>
+                    </div>
+                </div>
+          {% else %}
+              <div id = "{{ message.count_in_room}}">
+                    <div>
+                        <div>
+                          <div>{{ message.author }}:</div>
+                          <div>{{ message.time }}</div>
+                        </div>
+                        <div>{{ message.text }}</div>
+                    </div>
+                </div>
+          {% endif %}
+      {% endfor %}
+  </main>
+<form>
+    <input type="text" id="input" placeholder="Сообщение">
+    <input type="button" id="submit" value="Отправить">
+</form>
+</section>
+<h1 id="titleMessenger">messenger</h1>
+    <script src="{% static 'js/room.js'%}"></script>
+</body>
+</html>

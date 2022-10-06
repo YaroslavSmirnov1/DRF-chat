@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <title>Регистрация/messenger</title>
+  </head>
+  <body>
+  <h1>messenger</h1>
+    <form id="signup_form" method="post" action="{% url 'account_signup' %}">
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>{{message}}</li>
+                {% endfor %}
+            </ul>
+                {% endif %}
+        <p id="backButton">&#8592</p>
+        <h2>Регистрация</h2>
+        <h2>Уже зарегистрированы? <a href="{{ login_url }}">Войти</a></h2>
+      {% csrf_token %}
+         {{ form.as_p }}
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <button type="submit" class="btn">Регистрация</button>
+    </form>
+  <script src="../static/js/signup.js"></script>
+  </body>
+</html>

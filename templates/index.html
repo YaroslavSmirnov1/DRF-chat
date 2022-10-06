@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>messenger</title>
+</head>
+<body>
+    <header>
+        {% if messages %}
+              <ul>
+                {% for message in messages %}
+                    <li>{{message}}</li>
+                {% endfor %}
+              </ul>
+        {% endif %}
+        <button id="personalAccountButton">Личный кабинет</button>
+        <button id="registrationButton">Регистрация</button>
+        <button id="loginButton">Логин</button>
+        <button id="logoutButton">Выйти</button>
+    </header>
+	<section id="start-page">
+		<h1>messenger</h1>
+        <p id="greetings">Привет!</p>
+		<h2><input id="chat-name-input" placeholder="Название твоего чата:"></h2>
+		<button id="startButton">Start</button>
+    </section>
+    <p>Комнаты и их спикеры:</p>
+    <div class="rooms-block">
+    </div>
+<script src="../static/js/index.js"></script>
+</body>
+</html>
